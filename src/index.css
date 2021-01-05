@@ -1,3 +1,11 @@
+@import '~antd/dist/antd.css';
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +15,276 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.root {
+  height: 100vh;
 }
+
+.map {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #464643;
+  flex-direction: row;
+}
+
+.rebackBtn {
+  position: fixed;
+  top:50px;
+  right: 120px;
+  width: 2%;
+  cursor: pointer;
+}
+
+.saveBtn {
+  position: fixed;
+  top:55px;
+  right: 50px;
+  width: 2%;
+  cursor: pointer;
+}
+
+.block {
+    position: absolute;
+    width: 150px;
+    height:150px;
+    /* background-color: #eeeeee; */
+}
+
+.tank {
+  display:flex;
+  position: relative;
+  width: 100%;
+  height:100%;
+  justify-content: center;
+  align-items: center;
+  border:1px solid transparent;
+  z-index: 9;
+  background-color: bisque;
+}
+
+.tank text {
+    font-size: 18px;
+}
+
+.tank:hover {
+  border:1px solid #2068d3;
+}
+
+.tank .option {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 140%;
+  left:0;
+  top:-30px;
+}
+
+.flow {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+}
+.flow:hover {
+  z-index: 99;
+  border:1px solid #0dabf5;
+}
+.flow .option {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 140%;
+  left:0;
+  top:-30px;
+  z-index: 100;
+  
+}
+.flow .valveInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.flow .flowBlock {
+ position: relative;
+ display: block;
+ width:150px;
+ height:40px;
+ line-height: 40px;
+ text-align: center;
+ z-index: 100;
+ border:1px solid #000;
+ background-color: #49638a;
+}
+.flow .rotateBtn {
+  position: absolute;
+  width: 15%;
+  left:120px;
+  bottom:10px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.valve {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   /* border:1px solid #000;
+   background-color: #3c7d9b; */
+}
+
+.valve .rotateBtn {
+  position: absolute;
+  width: 15%;
+  left:120px;
+  bottom:10px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+.valve:hover {
+  z-index: 99;
+  border:1px solid #0dabf5;
+}
+
+.valve .option {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 140%;
+  left:0;
+  top:-30px;
+  z-index: 100;
+  
+}
+
+.valve .valveInner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.valve .valveBlock {
+   position: relative;
+   width: 100px;
+   height:40px;
+   line-height: 40px;
+   text-align: center;
+   z-index: 100;
+   border:1px solid #000;
+   background-color: #3c7d9b;
+}
+
+.valve .valveInner::after {
+    position: absolute;
+    top:50%;
+    transform: translateY(-5px);
+    display: block;
+    content: '';
+    width: 100%;
+    height: 10px;
+    z-index: 2;
+    background-color: #ff9600;
+}
+
+.pipe {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 2;
+    /* border:1px solid transparent; */
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.pipe .pipeInner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.pipe .option {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 140%;
+    left:-1px;
+    top:-30px;
+    z-index: 100;
+    
+}
+.pipe .rotateBtn {
+    position: absolute;
+    width: 15%;
+    left:120px;
+    bottom:10px;
+    z-index: 9;
+    cursor: pointer;
+}
+.pipe:hover {
+  z-index: 99;
+  border:1px solid #0dabf5;
+}
+.linePipe {
+  position: relative;
+  width: 100%;
+  height:10px;
+  background-color: #ff9600;
+}
+
+.t-pipe {
+  width: 100%;
+  height:100%;
+  font-size: 0;
+}
+.t-pipe .up {
+    width: 150px;
+    height: 10px;
+    margin-top: 70px;
+    background-color:#ff9600 ;
+}
+.t-pipe .mid {
+    width: 10px;
+    height:71px;
+    margin-left:70px;
+    background-color:#ff9600;
+}
+.t-pipe .down {
+  width: 75px;
+  height:10px;
+  margin-top: -10px;
+  background-color:#ff9600;
+}
+
+.l-pipe {
+  position: absolute;
+  left:0;
+  top: 0;
+}
+.l-pipe .mid {
+    width: 10px;
+    height:75px;
+    margin-left:70px;
+    background-color:#ff9600;
+}
+.l-pipe .down {
+    width:80px;
+    height:10px;
+    margin-top: -5px;
+    background-color:#ff9600;
+}
+

@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-31 17:40:37
+ * @LastEditTime: 2020-12-31 17:40:37
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /industry-process/src/index.js
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
