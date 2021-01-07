@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-31 18:03:10
- * @LastEditTime: 2021-01-05 17:42:07
+ * @LastEditTime: 2021-01-06 13:10:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /industry-process/src/box.js
@@ -26,7 +26,7 @@ class Box extends React.Component {
       mapData: [
         {
           index:0,
-          text:'',
+          text:'罐',
           type: "box",
           top: 100,
           left: 150,

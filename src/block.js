@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-31 18:08:49
- * @LastEditTime: 2021-01-05 17:34:04
+ * @LastEditTime: 2021-01-07 11:04:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /industry-process/src/block.js
@@ -9,7 +9,7 @@
 
 import "./index.css";
 import React, {useEffect, useState } from "react";
-import { Menu, Dropdown, Button, Cascader } from "antd";
+import { Menu, Dropdown, Button, Cascader,Switch } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import img from "./static/rotate.png";
 
@@ -24,7 +24,7 @@ let boxIndex = 0;
 function Block(props) {
 //   console.log({ props });
   const { updateMap,addBlock, getBox, data } = props;
-  const { type, top, left, derection, index, pipeType, rotate } = data;
+  const { type, top, left, derection, index, pipeType, rotate,text,ifOpen } = data;
   const [ifedit, setIfedit] = useState(false);
   const [current, setCurrent] = useState({});
   const [newBox, setnewBox] = useState({});
@@ -163,6 +163,7 @@ function Block(props) {
     if (value[0] === "罐") {
       setnewBox({
         ...current,
+        text:'罐',
         type: "box",
       });
     }
@@ -170,6 +171,8 @@ function Block(props) {
     if (value[0] === "阀门") {
       setnewBox({
         ...current,
+        text:'阀门',
+        ifOpen:true,
         type: "valve",
       });
     }
@@ -177,6 +180,7 @@ function Block(props) {
     if (value[0] === "流量计") {
         setnewBox({
           ...current,
+          text:'流量计',
           type: "flow",
         });
       }
@@ -186,6 +190,7 @@ function Block(props) {
         setnewBox({
           ...current,
           type: "pipe",
+          text:'直线管道',
           pipeType: "直线管道",
         });
         // setpipeType('直线管道');
@@ -194,6 +199,7 @@ function Block(props) {
         setnewBox({
           ...current,
           type: "pipe",
+          text:'t字管道',
           pipeType: "t字管道",
         });
         // setpipeType('t字管道');
@@ -202,6 +208,7 @@ function Block(props) {
         setnewBox({
           ...current,
           type: "pipe",
+          text:'L字管道',
           pipeType: "L字管道",
         });
         // setpipeType('t字管道');
@@ -242,6 +249,22 @@ function Block(props) {
     console.log('boxIndex减1')
   }
 
+  const inputHandle = (e,index)=>{
+    // console.log({e,index});
+    updateMap({
+        ...getBox(index)[0],
+        text:e.target.value
+    });
+  }
+
+  const switchHandle = (checked)=>{
+    //    console.log({checked});
+    updateMap({
+        ...getBox(index)[0],
+        ifOpen:checked
+    });
+  }
+
   return (
     <div
       className="block"
@@ -255,7 +278,7 @@ function Block(props) {
     >
       {type === "box" && (
         <div className="tank">
-          <div>罐</div>
+          <div><input className="input"  onChange={e=>inputHandle(e,index)}  value={text} /></div>
           <div className="option">
             {ifedit && (
               <Cascader
@@ -287,7 +310,7 @@ function Block(props) {
                         <img
                         className="rotateBtn"
                         src={img}
-                        onClick={() => rotatePipe(index)}
+                        onClick={(e) => rotatePipe(e,index)}
                         />
                     )}
                     <div className="option">
@@ -312,7 +335,9 @@ function Block(props) {
                         )}
                     </div>
                     <div className="flowInner" style={{ transform: `rotate(${rotate}deg)` }}>
-                    <div className="flowBlock">流量计</div>
+                    <div className="flowBlock">
+                    <input className="input" style={{backgroundColor:'transparent',border:'none',textAlign:'center'}} onChange={e=>inputHandle(e,index)}  value={text} />
+                    </div>
                     </div>
               </div>
           )
@@ -349,7 +374,10 @@ function Block(props) {
             )}
           </div>
           <div className="valveInner" style={{ transform: `rotate(${rotate}deg)` }}>
-          <div className="valveBlock">阀门</div>
+          <div className="valveBlock">
+          <Switch checked={ifOpen} onChange={switchHandle} />
+          <input className="input" style={{backgroundColor:'transparent',border:'none',display:'flex',width:'100%',textAlign:'center',justifyContent:'center',alignItems:'center'}} onChange={e=>inputHandle(e,index)}  value={text} />
+          </div>
           </div>
         </div>
       )}
